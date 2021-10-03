@@ -6,7 +6,7 @@
 /*   By: jkasongo <jkasongo@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 22:08:47 by jkasongo          #+#    #+#             */
-/*   Updated: 2021/10/03 15:07:40 by jkasongo         ###   ########.fr       */
+/*   Updated: 2021/10/03 17:31:03 by jkasongo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,8 @@ void	print_map_file(t_app *app)
 
 	x = app->file_x;
 	y = app->file_y;
-	k = app->file_map->length;
+	k = app->file_map->length - 1;
+	ft_printf("x: %d, y: %d\n", x, y);
 	datas = map_stack_to_points(app->file_map, do_nothing);
 	while (y)
 	{

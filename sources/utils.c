@@ -6,7 +6,7 @@
 /*   By: jkasongo <jkasongo@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/26 00:30:13 by jkasongo          #+#    #+#             */
-/*   Updated: 2021/09/28 21:14:41 by jkasongo         ###   ########.fr       */
+/*   Updated: 2021/10/03 18:10:15 by jkasongo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,16 +48,6 @@ void	make_title(t_app *app)
 	title = "FDF";
 	title = ft_strjoin("FDF : ", app->file_name);
 	app->title = title;
-}
-
-void	ft_rotate_map_stack(t_app *app)
-{
-	int	k;
-
-	k = 0;
-	k = app->file_map->length - 1;
-	while (k--)
-		rotate(app->file_map);
 }
 
 t_coord	*map_stack_to_points(t_stack *stack, t_coord (*apply)(void *))

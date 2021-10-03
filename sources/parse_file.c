@@ -17,15 +17,12 @@ static bool	check_point_validity(char *nbr, char *color)
 	if (color != 0)
 	{
 		if (color[i++] != '0')
-		{
-			ft_printf("couleur arret ici 0 %s", color);
 			return (false);
-		}
 		if (color[i] != 'x' && color[i] != 'X')
 			return (false);
 		while (color[i] && ft_isalnum(color[i]))
 			i++;
-		if (i < 7)
+		if (i != 8)
 			return (false);
 	}
 	return (true);
@@ -34,19 +31,20 @@ static bool	check_point_validity(char *nbr, char *color)
 t_coord	*parse_point(char *info[], int x, int y)
 {
 	int		i;
+	long	z;
 	t_coord	*point;
 
 	i = 0;
-	if (!check_point_validity(info[0], info[1]))
+	z = ft_atol(info[0]);
+	if (!check_point_validity(info[0], info[1])
+		|| (z > 2147483647 || z < -2147483648))
 		return (NULL);
-	point = (t_coord *)malloc(sizeof(t_coord));
+	point = (t_coord *)ft_calloc(1, sizeof(t_coord));
 	if (!point)
 		return (NULL);
 	point->x = x;
 	point->y = y;
-	point->color = 0;
-	point->special = false;
-	point->z = ft_atoi(info[0]);
+	point->z = (int)z;
 	if (info[1])
 	{
 		point->special = true;

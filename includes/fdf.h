@@ -54,7 +54,6 @@ void	draw_segment_high(t_coord begin, t_coord end, int color);
 void	trace_pixel(int x, int y, int color);
 
 void	make_title(t_app *app);
-void	ft_rotate_map_stack(t_app *app);
 t_coord	do_nothing(void *point);
 t_coord	*map_stack_to_points(t_stack *stack, t_coord (*apply)(void *));
 #endif

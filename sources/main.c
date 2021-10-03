@@ -2,10 +2,6 @@
 
 static bool	init_app(t_app *app, int fd)
 {
-	app->mlx = NULL;
-	app->window = NULL;
-	app->file_map = NULL;
-	app->title = NULL;
 	app->fd = fd;
 	app->mlx = mlx_init();
 	if (!app->mlx)
@@ -14,11 +10,8 @@ static bool	init_app(t_app *app, int fd)
 		return (false);
 	}
 	make_title(app);
-	app->file_x = 0;
-	app->file_y = 0;
 	if (!read_map_file(app))
 		return (false);
-	ft_rotate_map_stack(app);
 	app->window = mlx_new_window(app->mlx, W_HEIGHT, W_WIDTH, app->title);
 	if (!app->window)
 	{
@@ -54,8 +47,7 @@ int	main(int argc, char *argv[])
 	app = NULL;
 	if (argc == 2)
 	{
-		app = (t_app *)malloc(sizeof(t_app));
-		app->error_message = NULL;
+		app = (t_app *)ft_calloc(1, sizeof(t_app));
 		fd = openfile(argv[1], app);
 		if (fd < 0)
 			return (close_app(app, true, false));
