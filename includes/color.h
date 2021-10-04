@@ -6,7 +6,7 @@
 /*   By: jkasongo <jkasongo@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 12:31:54 by jkasongo          #+#    #+#             */
-/*   Updated: 2021/10/03 15:40:57 by jkasongo         ###   ########.fr       */
+/*   Updated: 2021/10/03 19:34:06 by jkasongo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,7 @@
 
 // Encoding colors in trbg style t:transparency, r:red g:green, b:blue
 int	ft_create_trgb(int t, int r, int g, int b);
-// deccoding transparency in trgb
-int	ft_get_transparency(int trgb);
-int	get_red(int trgb);
-int	get_green(int trgb);
-int	get_blue(int trgb);
+// Encoding colors according to position of the point
+int	ft_get_color_degrader(int begin, int end, int current, int color);
 
 #endif

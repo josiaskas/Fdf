@@ -6,7 +6,7 @@
 /*   By: jkasongo <jkasongo@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/26 00:30:13 by jkasongo          #+#    #+#             */
-/*   Updated: 2021/10/03 18:10:15 by jkasongo         ###   ########.fr       */
+/*   Updated: 2021/10/04 04:35:27 by jkasongo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,4 +72,32 @@ t_coord	*map_stack_to_points(t_stack *stack, t_coord (*apply)(void *))
 		i++;
 	}
 	return (results);
+}
+
+t_coord	**make_map(t_app *app)
+{
+	int		x;
+	int		y;
+	int		k;
+	t_coord	*datas;
+	t_coord	**map;
+
+	y = 0;
+	k = app->file_map->length - 1;
+	map = (t_coord **)ft_calloc(app->file_y, sizeof(t_coord *));
+	datas = map_stack_to_points(app->file_map, do_nothing);
+	while (y < app->file_y)
+	{
+		x = 0;
+		map[y] = (t_coord *)ft_calloc(app->file_x, sizeof(t_coord));
+		while (x < app->file_x)
+		{
+			map[y][x] = datas[k];
+			x++;
+			k--;
+		}
+		y++;
+	}
+	free(datas);
+	return (map);
 }

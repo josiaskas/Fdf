@@ -6,7 +6,7 @@
 /*   By: jkasongo <jkasongo@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 22:08:47 by jkasongo          #+#    #+#             */
-/*   Updated: 2021/10/03 17:31:03 by jkasongo         ###   ########.fr       */
+/*   Updated: 2021/10/03 19:52:30 by jkasongo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	ft_show_error(t_app *app)
 	else if (app->error_code == 5)
 		app->error_message = "MAP: Reading error on a point";
 	else if (app->error_code == 7)
-		app->error_message = "MLX window init error";
+		app->error_message = "MLX init error";
 	else if (app->error_code == 8)
 		app->error_message = "Usage: ./fdf MAP_FILE";
 	ft_print_error(app->error_message, app->error_code);
@@ -67,7 +67,7 @@ void	print_map_file(t_app *app)
 		x = app->file_x;
 		while (x)
 		{
-			ft_printf("%3d", datas[k].z);
+			ft_printf("(%2d, %2d, %2d) ", datas[k].x, datas[k].y, datas[k].z);
 			x--;
 			k--;
 		}

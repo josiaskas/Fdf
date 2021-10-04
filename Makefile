@@ -8,8 +8,8 @@ MLX_FLAGS = -L$(MLX_DIR) -lmlx -framework OpenGl -framework AppKit
 
 #source
 SRCS_DIR = sources/
-SRCS = main.c parse_file.c errors.c utils.c\
-		bresenham.c draw_segment.c\
+SRCS = main.c parse_file.c errors.c mlx_utils.c utils.c\
+		draw_segment.c draw.c\
 
 SRCS_PREFIXED = $(addprefix $(SRCS_DIR), $(SRCS))
 
@@ -24,7 +24,7 @@ $(NAME): $(OBJS)
 	@$(MAKE) re -C ./libft
 	@$(MAKE) -C $(MLX_DIR)
 	@echo "\033[0;32m libmlx.dylib builded \033[m"
-	@$(CC) $(CFLAGS) $(OBJS) -L./libft -lft $(MLX_FLAGS) -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJS) -L./libft -lft -lm $(MLX_FLAGS) -o $(NAME)
 	@cp $(MLX_DIR)/libmlx.dylib libmlx.dylib
 	@echo "\033[0;32m libmlx.dylib copied \033[m"
 	@echo $(NAME) est construit

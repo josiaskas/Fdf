@@ -1,5 +1,16 @@
 #include "../includes/fdf.h"
 
+static void	loop_app(t_app *app)
+{
+	t_image	*img;
+
+	img = app->mlx_img;
+	ft_draw_fdf(app);
+	mlx_hook(app->window, 2, 0, key_pressed_hook, app);
+	//mlx_hook(app->window, 17, 0, terminate_hook, app);
+	mlx_loop(app->mlx);
+}
+
 static bool	init_app(t_app *app, int fd)
 {
 	app->fd = fd;
@@ -12,8 +23,9 @@ static bool	init_app(t_app *app, int fd)
 	make_title(app);
 	if (!read_map_file(app))
 		return (false);
+	app->map = make_map(app);
 	app->window = mlx_new_window(app->mlx, W_HEIGHT, W_WIDTH, app->title);
-	if (!app->window)
+	if (!app->window || !ft_init_image(app))
 	{
 		app->error_code = 7;
 		return (false);
@@ -30,6 +42,9 @@ static int	close_app(t_app *app, bool	with_errors, bool all)
 		free_stack(app->file_map);
 		if (app->window)
 			mlx_destroy_window(app->mlx, app->window);
+		if (app->map)
+			free_array((void **)app->map, app->file_y);
+		free(app->mlx_img);
 		free(app->title);
 	}
 	free(app);
@@ -55,12 +70,11 @@ int	main(int argc, char *argv[])
 		{
 			if (init_app(app, fd))
 			{
-				print_map_file(app);
-				//mlx_loop(app->mlx);
+				loop_app(app);
+				return (close_app(app, false, true));
 			}
 			else
 				return (close_app(app, true, true));
-			return (close_app(app, false, true));
 		}
 	}
 	ft_print_error("Usage: ./fdf MAP_FILE", 1);
