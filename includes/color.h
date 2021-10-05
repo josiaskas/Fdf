@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkasongo <jkasongo@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: jkasongo <jkasongo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 12:31:54 by jkasongo          #+#    #+#             */
-/*   Updated: 2021/10/03 19:34:06 by jkasongo         ###   ########.fr       */
+/*   Updated: 2021/10/04 19:04:19 by jkasongo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@
 # define COLOR_JAFFA 0xEF8633
 # define COLOR_SAFFRON 0xF3AF3D
 
-// Encoding colors in trbg style t:transparency, r:red g:green, b:blue
-int	ft_create_trgb(int t, int r, int g, int b);
-// Encoding colors according to position of the point
-int	ft_get_color_degrader(int begin, int end, int current, int color);
+// return percent according to begin and end
+double	ft_percent(int start, int end, int current);
+// color start, color end and curent percent on the slope
+int		ft_gradient(int start, int end, double percent);
 
 #endif

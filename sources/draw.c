@@ -3,14 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkasongo <jkasongo@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: jkasongo <jkasongo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 02:25:00 by jkasongo          #+#    #+#             */
-/*   Updated: 2021/10/04 05:38:07 by jkasongo         ###   ########.fr       */
+/*   Updated: 2021/10/04 19:56:08 by jkasongo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
+
+t_coord	prepare_point(t_coord *original, t_app *app)
+{
+	t_coord	result;
+	t_image	*img;
+
+	img = app->mlx_img;
+	result.x = original->x * img->zoom;
+	result.y = original->y * img->zoom;
+	result.z = original->z * img->zoom;
+	result.special = original->special;
+	if (result.special)
+		result.color = original->color;
+	else
+		result.color = result.z;
+	result.x += MENU_WIDTH + img->map_start_x;
+	result.y += ((app->file_y * img->zoom) / 2) + img->map_start_y;
+	return (result);
+}
 
 void	draw_map(t_app *app, t_coord *map[])
 {

@@ -24,7 +24,7 @@ static bool	init_app(t_app *app, int fd)
 	if (!read_map_file(app))
 		return (false);
 	app->map = make_map(app);
-	app->window = mlx_new_window(app->mlx, W_HEIGHT, W_WIDTH, app->title);
+	app->window = mlx_new_window(app->mlx, W_WIDTH, W_HEIGHT, app->title);
 	if (!app->window || !ft_init_image(app))
 	{
 		app->error_code = 7;

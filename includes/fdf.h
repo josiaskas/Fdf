@@ -77,7 +77,7 @@ void	print_map_file(t_app *app);
 
 // Algorithme de Bresenham
 void	draw_segment(t_coord begin, t_coord end, t_image *img);
-void	trace_pixel(t_coord curr, t_coord end, t_image *img);
+void	trace_pixel(t_coord *curr, t_coord *end, double percent, t_image *img);
 
 void	make_title(t_app *app);
 t_coord	do_nothing(void *point);
