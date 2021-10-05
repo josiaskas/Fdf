@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkasongo <jkasongo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jkasongo <jkasongo@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 12:31:54 by jkasongo          #+#    #+#             */
-/*   Updated: 2021/10/04 19:04:19 by jkasongo         ###   ########.fr       */
+/*   Updated: 2021/10/04 23:25:55 by jkasongo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,7 @@
 double	ft_percent(int start, int end, int current);
 // color start, color end and curent percent on the slope
 int		ft_gradient(int start, int end, double percent);
-
+int		palete_one(double percent);
+int		palete_two(double percent);
+int		palete_three(double percent);
 #endif

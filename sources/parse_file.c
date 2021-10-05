@@ -22,7 +22,7 @@ static bool	check_point_validity(char *nbr, char *color)
 			return (false);
 		while (color[i] && ft_isalnum(color[i]))
 			i++;
-		if (i != 8)
+		if (i < 3 || i > 8)
 			return (false);
 	}
 	return (true);

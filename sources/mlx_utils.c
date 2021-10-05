@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkasongo <jkasongo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jkasongo <jkasongo@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/03 19:50:35 by jkasongo          #+#    #+#             */
-/*   Updated: 2021/10/04 16:11:55 by jkasongo         ###   ########.fr       */
+/*   Updated: 2021/10/04 23:58:04 by jkasongo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,14 @@ bool	ft_init_image(t_app *app)
 		return (false);
 	img->bg_color = BACKGROUND;
 	img->menu_bg_color = MENU_BACKGROUND;
-	img->default_point_color = COLOR_DISCO;
+	img->palete = 1;
 	if (((W_WIDTH - MENU_WIDTH) / app->file_x / 2)
 		> (W_HEIGHT / app->file_y / 2))
 		img->zoom = W_HEIGHT / app->file_y / 2;
 	else
 		img->zoom = (W_WIDTH - MENU_WIDTH) / app->file_x / 2;
-	// img->zoom = 20;
+	img->min = 0;
+	img->max = 0;
 	return (true);
 }
 

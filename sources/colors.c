@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   colors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkasongo <jkasongo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jkasongo <jkasongo@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/03 19:30:49 by jkasongo          #+#    #+#             */
-/*   Updated: 2021/10/04 19:38:48 by jkasongo         ###   ########.fr       */
+/*   Updated: 2021/10/05 00:13:50 by jkasongo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,12 @@ double	ft_percent(int start, int end, int current)
 
 static int	get_r(int trgb)
 {
-	return (trgb & (0xFF << 16));
+	return ((trgb >> 16) & 0xFF);
 }
 
 static int	get_g(int trgb)
 {
-	return (trgb & (0xFF << 8));
+	return ((trgb >> 8) & 0xFF);
 }
 
 static int	get_b(int trgb)
@@ -45,9 +45,9 @@ int	ft_gradient(int start, int end, double percent)
 {
 	int		new[4];
 
-	new[0] = (int)((1 - percent) * get_r(start) + percent * get_r(end));
-	new[1] = (int)((1 - percent) * get_g(start) + percent * get_g(end));
-	new[2] = (int)((1 - percent) * get_b(start) + percent * get_b(end));
+	new[0] = (int)round((1 - percent) * get_r(start) + percent * get_r(end));
+	new[1] = (int)round((1 - percent) * get_g(start) + percent * get_g(end));
+	new[2] = (int)round((1 - percent) * get_b(start) + percent * get_b(end));
 	new[3] = end & (0xFF << 24);
 	return (new[3] << 24 | new[0] << 16 | new[1] << 8 | new[2]);
 }

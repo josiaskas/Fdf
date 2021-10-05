@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_segment.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkasongo <jkasongo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jkasongo <jkasongo@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 11:34:07 by jkasongo          #+#    #+#             */
-/*   Updated: 2021/10/04 19:51:01 by jkasongo         ###   ########.fr       */
+/*   Updated: 2021/10/05 00:12:21 by jkasongo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,8 @@ void	trace_pixel(t_coord *curr, t_coord *end, double percent, t_image *img)
 	char	*pixel;
 
 	color = ft_gradient(curr->color, end->color, percent);
+	(void)percent;
+	(void)end;
 	offset = (curr->y * img->line_length) + curr->x * (img->bits_per_pixel / 8);
 	if ((curr->x >= MENU_WIDTH && curr->x < W_WIDTH)
 		&& (curr->y >= 0 && curr->y < W_HEIGHT))
