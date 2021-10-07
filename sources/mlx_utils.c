@@ -6,7 +6,7 @@
 /*   By: jkasongo <jkasongo@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/03 19:50:35 by jkasongo          #+#    #+#             */
-/*   Updated: 2021/10/07 01:09:00 by jkasongo         ###   ########.fr       */
+/*   Updated: 2021/10/07 01:30:35 by jkasongo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,19 +62,27 @@ bool	ft_init_image(t_app *app)
 
 void	draw_background(t_image *img)
 {
-	unsigned int	*pixel;
-	size_t			i;
+	size_t	offset;
+	char	*pixel;
+	size_t	x;
+	size_t	y;
 
-	i = 0;
+	y = 0;
 	ft_bzero(img->addr, W_WIDTH * W_HEIGHT * (img->bits_per_pixel / 8));
-	pixel = (unsigned int *)img->addr;
-	while (i < (W_WIDTH * W_HEIGHT))
+	while (y < W_HEIGHT)
 	{
-		if ((i % W_WIDTH) < MENU_WIDTH)
-			pixel[i] = (unsigned int)img->menu_bg_color;
-		else
-			pixel[i] = (unsigned int)img->bg_color;
-		i++;
+		x = 0;
+		while (x < W_WIDTH)
+		{
+			offset = (y * img->line_length) + x * (img->bits_per_pixel / 8);
+			pixel = img->addr + offset;
+			if (x < MENU_WIDTH)
+				*(unsigned int *)pixel = img->menu_bg_color;
+			else
+				*(unsigned int *)pixel = img->bg_color;
+			x++;
+		}
+		y++;
 	}
 }
 
