@@ -9,6 +9,7 @@ static void	loop_app(t_app *app)
 	mlx_hook(app->window, 2, 0, key_pressed_hook, app);
 	//mlx_hook(app->window, 17, 0, terminate_hook, app);
 	mlx_loop(app->mlx);
+	//print_map_file(app);
 }
 
 static bool	init_app(t_app *app, int fd)
@@ -39,11 +40,11 @@ static int	close_app(t_app *app, bool	with_errors, bool all)
 		ft_show_error(app);
 	if (all)
 	{
-		free_stack(app->file_map);
+		ft_free_file_stack(app->file_map);
 		if (app->window)
 			mlx_destroy_window(app->mlx, app->window);
 		if (app->map)
-			free_array((void **)app->map, app->file_y);
+			ft_free_map(app->map, app->file_y);
 		free(app->mlx_img);
 		free(app->title);
 	}

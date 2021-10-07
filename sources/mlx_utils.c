@@ -6,12 +6,37 @@
 /*   By: jkasongo <jkasongo@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/03 19:50:35 by jkasongo          #+#    #+#             */
-/*   Updated: 2021/10/04 23:58:04 by jkasongo         ###   ########.fr       */
+/*   Updated: 2021/10/07 01:09:00 by jkasongo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
-#include "../includes/key.h"
+
+// zoom pour avoir 50% sur x ou y puis centrage de la map
+static void	ft_init_map_placement(t_app *app, t_image *img)
+{
+	int	big_x;
+	int	big_y;
+	int	center_x;
+	int	center_y;
+	int	space_left;
+
+	big_x = W_WIDTH - MENU_WIDTH;
+	big_y = W_HEIGHT;
+	center_x = 0;
+	center_y = 0;
+	space_left = 0;
+	if ((big_x / app->file_x / 2) > (big_y / app->file_y / 2))
+		img->zoom = big_y / app->file_y / 2;
+	else
+		img->zoom = big_x / app->file_x / 2;
+	if (img->zoom < 1)
+		img->zoom = 1;
+	center_x = ((big_x / 2) + MENU_WIDTH) + space_left;
+	center_y = (big_y / 2) + space_left;
+	img->map_start_x = center_x - ((app->file_x / 2) * img->zoom);
+	img->map_start_y = center_y - ((app->file_y / 2) * img->zoom);
+}
 
 bool	ft_init_image(t_app *app)
 {
@@ -31,13 +56,7 @@ bool	ft_init_image(t_app *app)
 	img->bg_color = BACKGROUND;
 	img->menu_bg_color = MENU_BACKGROUND;
 	img->palete = 1;
-	if (((W_WIDTH - MENU_WIDTH) / app->file_x / 2)
-		> (W_HEIGHT / app->file_y / 2))
-		img->zoom = W_HEIGHT / app->file_y / 2;
-	else
-		img->zoom = (W_WIDTH - MENU_WIDTH) / app->file_x / 2;
-	img->min = 0;
-	img->max = 0;
+	ft_init_map_placement(app, img);
 	return (true);
 }
 
@@ -81,26 +100,4 @@ bool	draw_menu(t_app *app)
 	mlx_string_put(mlx, win, 57, y += 25, TEXT_COLOR, "ISO: I Key");
 	mlx_string_put(mlx, win, 57, y += 25, TEXT_COLOR, "Parallel: P Key");
 	return (true);
-}
-
-int	key_pressed_hook(int key, t_app *app)
-{
-	if (key == MAIN_PAD_ESC)
-		terminate_hook(app);
-	return (0);
-}
-
-int	terminate_hook(t_app *app)
-{
-	free_stack(app->file_map);
-	if (app->map)
-		free_array((void **)app->map, app->file_y);
-	if (app->mlx_img)
-		mlx_destroy_image(app->mlx, app->mlx_img->img);
-	if (app->window)
-		mlx_destroy_window(app->mlx, app->window);
-	free(app->mlx_img);
-	free(app->title);
-	free(app);
-	exit(0);
 }

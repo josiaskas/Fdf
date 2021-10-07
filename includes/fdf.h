@@ -8,8 +8,8 @@
 # include "../minilibx/mlx.h"
 # include "../libft/libft.h"
 # include "color.h"
-# define W_HEIGHT 1080
-# define W_WIDTH 1920
+# define W_HEIGHT 768
+# define W_WIDTH 1366
 # define MENU_WIDTH 250
 
 typedef struct s_coord
@@ -18,6 +18,7 @@ typedef struct s_coord
 	int		y;
 	int		z;
 	bool	special;
+	bool	end;
 	int		color;
 }	t_coord;
 
@@ -55,7 +56,7 @@ typedef struct s_app
 	char	*error_message;
 	int		error_code;
 	int		fd;
-	t_coord	**map;
+	t_coord	***map;
 }	t_app;
 
 void	ft_show_error(t_app *app);
@@ -88,8 +89,9 @@ void	print_map_file(t_app *app);
 void	draw_segment(t_coord begin, t_coord end, t_image *img);
 void	trace_pixel(t_coord *curr, t_coord *end, double percent, t_image *img);
 
+// utils
 void	make_title(t_app *app);
-t_coord	do_nothing(void *point);
-t_coord	*map_stack_to_points(t_stack *stack, t_coord (*apply)(void *));
-t_coord	**make_map(t_app *app);
+t_coord	***make_map(t_app *app);
+void	ft_free_map(t_coord ***map, size_t nb_lines);
+void	ft_free_file_stack(t_stack *file_map);
 #endif

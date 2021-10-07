@@ -6,7 +6,7 @@
 /*   By: jkasongo <jkasongo@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 02:25:00 by jkasongo          #+#    #+#             */
-/*   Updated: 2021/10/05 00:31:37 by jkasongo         ###   ########.fr       */
+/*   Updated: 2021/10/07 01:03:38 by jkasongo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,12 @@ t_coord	prepare_point(t_coord *original, t_app *app)
 		result.color = original->color;
 	else
 		result.color = ft_get_palete_color(img->palete, percent);
-	result.x += MENU_WIDTH + img->map_start_x;
-	result.y += ((app->file_y * img->zoom) / 2) + img->map_start_y;
+	result.x += img->map_start_x;
+	result.y += img->map_start_y;
 	return (result);
 }
 
-void	draw_map(t_app *app, t_coord *map[])
+void	draw_map(t_app *app, t_coord ***map)
 {
 	int		x;
 	int		y;
@@ -43,20 +43,18 @@ void	draw_map(t_app *app, t_coord *map[])
 	while (y < app->file_y)
 	{
 		x = 0;
-		while (x < app->file_x)
+		while (map[y][x]->end == false)
 		{
-			if (x != (app->file_x - 1))
-			{
-				draw_segment(prepare_point(&map[y][x], app),
-					prepare_point(&map[y][x + 1], app), app->mlx_img);
-			}
+			draw_segment(prepare_point(map[y][x], app),
+				prepare_point(map[y][x + 1], app), app->mlx_img);
 			if (y != (app->file_y - 1))
-			{
-				draw_segment(prepare_point(&map[y][x], app),
-					prepare_point(&map[y + 1][x], app), app->mlx_img);
-			}
+				draw_segment(prepare_point(map[y][x], app),
+					prepare_point(map[y + 1][x], app), app->mlx_img);
 			x++;
 		}
+		if (y != (app->file_y - 1))
+			draw_segment(prepare_point(map[y][x], app),
+				prepare_point(map[y + 1][x], app), app->mlx_img);
 		y++;
 	}
 	mlx_put_image_to_window(app->mlx, app->window, app->mlx_img->img, 0, 0);
@@ -72,10 +70,10 @@ void	ft_project(t_app *app, t_image *img)
 	while (y < app->file_y)
 	{
 		x = 0;
-		while (x < app->file_x)
+		while (app->map[y][x]->end == false)
 		{
-			ft_rotation_matrix(&app->map[y][x], img);
-			project_choice(&app->map[y][x], img);
+			ft_rotation_matrix(app->map[y][x], img);
+			project_choice(app->map[y][x], img);
 			x++;
 		}
 		y++;
@@ -84,7 +82,7 @@ void	ft_project(t_app *app, t_image *img)
 
 void	ft_draw_fdf(t_app *app)
 {
-	draw_background(app->mlx_img);
+	//draw_background(app->mlx_img);
 	ft_project(app, app->mlx_img);
 	draw_map(app, app->map);
 	draw_menu(app);

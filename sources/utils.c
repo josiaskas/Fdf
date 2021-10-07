@@ -6,7 +6,7 @@
 /*   By: jkasongo <jkasongo@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/26 00:30:13 by jkasongo          #+#    #+#             */
-/*   Updated: 2021/10/04 04:35:27 by jkasongo         ###   ########.fr       */
+/*   Updated: 2021/10/06 23:42:14 by jkasongo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,20 +27,6 @@ int	openfile(char *filename, t_app *app)
 	return (fd);
 }
 
-t_coord	do_nothing(void *point)
-{
-	t_coord	*data;
-	t_coord	result;
-
-	data = (t_coord *)point;
-	result.x = data->x;
-	result.y = data->y;
-	result.z = data->z;
-	result.color = data->color;
-	result.special = data->special;
-	return (result);
-}
-
 void	make_title(t_app *app)
 {
 	char	*title;
@@ -50,54 +36,57 @@ void	make_title(t_app *app)
 	app->title = title;
 }
 
-t_coord	*map_stack_to_points(t_stack *stack, t_coord (*apply)(void *))
+t_coord	***make_map(t_app *app)
 {
-	t_coord			*results;
-	t_stack_node	*node;
-	int				i;
+	int		y;
+	t_coord	**line;
+	t_coord	***map;
 
-	i = 0;
-	if (!stack)
-		return (0);
-	if (!stack->length)
-		return (0);
-	results = (t_coord *)malloc(sizeof(t_coord) * (stack->length));
-	if (!results)
-		return (0);
-	node = stack->head;
-	while (i < stack->length)
+	y = app->file_map->length - 1;
+	map = (t_coord ***)ft_calloc(app->file_y, sizeof(t_coord **));
+	while (app->file_map->length)
 	{
-		results[i] = apply(node->content);
-		node = node->next;
-		i++;
+		line = (t_coord **)pop(app->file_map);
+		map[y] = line;
+		y--;
 	}
-	return (results);
+	return (map);
 }
 
-t_coord	**make_map(t_app *app)
+void	ft_free_map(t_coord	***map, size_t nb_lines)
 {
-	int		x;
-	int		y;
-	int		k;
-	t_coord	*datas;
-	t_coord	**map;
+	size_t	x;
+	size_t	y;
 
 	y = 0;
-	k = app->file_map->length - 1;
-	map = (t_coord **)ft_calloc(app->file_y, sizeof(t_coord *));
-	datas = map_stack_to_points(app->file_map, do_nothing);
-	while (y < app->file_y)
+	while (y < nb_lines)
 	{
 		x = 0;
-		map[y] = (t_coord *)ft_calloc(app->file_x, sizeof(t_coord));
-		while (x < app->file_x)
-		{
-			map[y][x] = datas[k];
+		while (map[y][x]->end == false)
 			x++;
-			k--;
-		}
+		free_array((void **)map[y], x + 1);
 		y++;
 	}
-	free(datas);
-	return (map);
+	free(map);
+}
+
+void	ft_free_file_stack(t_stack *file_map)
+{
+	size_t	x;
+	t_coord	**line;
+
+	x = 0;
+	while (file_map->length)
+	{
+		line = (t_coord **)pop(file_map);
+		x = 0;
+		while (line[x]->end == false)
+		{
+			free(line[x]);
+			x++;
+		}
+		free(line[x]);
+		free(line);
+	}
+	free_stack(file_map);
 }

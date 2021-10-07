@@ -6,7 +6,7 @@
 /*   By: jkasongo <jkasongo@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 22:08:47 by jkasongo          #+#    #+#             */
-/*   Updated: 2021/10/03 19:52:30 by jkasongo         ###   ########.fr       */
+/*   Updated: 2021/10/06 23:22:27 by jkasongo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,25 +54,20 @@ void	print_map_file(t_app *app)
 {
 	int		x;
 	int		y;
-	int		k;
-	t_coord	*datas;
+	t_coord	***map;
 
-	x = app->file_x;
-	y = app->file_y;
-	k = app->file_map->length - 1;
-	ft_printf("x: %d, y: %d\n", x, y);
-	datas = map_stack_to_points(app->file_map, do_nothing);
-	while (y)
+	y = 0;
+	x = 0;
+	map = app->map;
+	while (y < app->file_y)
 	{
-		x = app->file_x;
-		while (x)
+		x = 0;
+		while (map[y][x]->end == false)
 		{
-			ft_printf("(%2d, %2d, %2d) ", datas[k].x, datas[k].y, datas[k].z);
-			x--;
-			k--;
+			ft_printf("%2d ", map[y][x]->z);
+			x++;
 		}
-		write(0, "\n", 1);
-		y--;
+		ft_printf("%2d\n", map[y][x]->z);
+		y++;
 	}
-	free(datas);
 }

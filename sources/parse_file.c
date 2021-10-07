@@ -28,7 +28,7 @@ static bool	check_point_validity(char *nbr, char *color)
 	return (true);
 }
 
-t_coord	*parse_point(char *info[], int x, int y)
+t_coord	*parse_point(char *info[], int x, int y, bool end)
 {
 	int		i;
 	long	z;
@@ -45,6 +45,7 @@ t_coord	*parse_point(char *info[], int x, int y)
 	point->x = x;
 	point->y = y;
 	point->z = (int)z;
+	point->end = end;
 	if (info[1])
 	{
 		point->special = true;
@@ -53,55 +54,56 @@ t_coord	*parse_point(char *info[], int x, int y)
 	return (point);
 }
 
-static bool	parse_each_point(char *points[], t_app *app)
+static bool	parse_each_point(char *points[], int len, t_app *app)
 {
 	int		i;
 	char	**data_point;
+	t_coord	**line;
 	t_coord	*point;
 
 	i = 0;
 	data_point = NULL;
 	point = NULL;
+	line = (t_coord **)ft_calloc(len, sizeof(t_coord *));
 	while (points[i] != 0)
 	{
 		data_point = ft_split(points[i], ',');
-		point = parse_point(data_point, i, app->file_y);
+		point = parse_point(data_point, i, app->file_y, (i == (len - 1)));
 		ft_free_splitted(data_point);
 		if (!point)
 		{
 			app->error_code = 5;
+			free_array((void **)line, len);
 			return (false);
 		}
-		push(app->file_map, point);
+		line[i] = point;
 		i++;
 	}
+	push(app->file_map, line);
 	return (true);
 }
 
 static bool	parse_line(char *line, t_app *app)
 {
-	static int	last_width = 0;
 	int			x;
 	char		**points;
 
 	app->error_code = 4;
 	x = 0;
-	points = NULL;
 	points = ft_split(line, ' ');
 	if (!points || !points[0])
 		return (false);
 	while (points[x] != 0)
 		x++;
-	if ((last_width != x && (last_width != 0))
-		|| !parse_each_point(points, app))
+	if (!parse_each_point(points, x, app))
 	{
 		ft_free_splitted(points);
 		return (false);
 	}
 	ft_free_splitted(points);
+	if (x > app->file_x)
+		app->file_x = x;
 	app->file_y++;
-	last_width = x;
-	app->file_x = x;
 	return (true);
 }
 
