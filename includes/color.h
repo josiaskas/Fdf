@@ -6,7 +6,7 @@
 /*   By: jkasongo <jkasongo@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 12:31:54 by jkasongo          #+#    #+#             */
-/*   Updated: 2021/10/04 23:25:55 by jkasongo         ###   ########.fr       */
+/*   Updated: 2021/10/07 02:54:59 by jkasongo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@
 # define PURPLE 0x800080
 # define TEAL 0x008080
 # define NAVY 0x000080
-# define TEXT_COLOR 0xEAEAEA
-# define BACKGROUND 0x222222
-# define MENU_BACKGROUND 0x1E1E1E
+# define TEXT_COLOR 0x1A1A1D
+# define BACKGROUND 0x1A1A1D
+# define MENU_BACKGROUND 0x950740
 # define COLOR_DISCO 0x9A1F6A
 # define COLOR_BRICK_RED 0xC2294E
 # define COLOR_FLAMINGO 0xEC4B27

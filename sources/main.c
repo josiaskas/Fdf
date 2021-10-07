@@ -7,7 +7,7 @@ static void	loop_app(t_app *app)
 	img = app->mlx_img;
 	ft_draw_fdf(app);
 	mlx_hook(app->window, 2, 0, key_pressed_hook, app);
-	//mlx_hook(app->window, 17, 0, terminate_hook, app);
+	mlx_hook(app->window, 17, 0, close_window, app);
 	mlx_loop(app->mlx);
 	//print_map_file(app);
 }

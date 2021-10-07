@@ -19,7 +19,7 @@ OBJS = $(SRCS_PREFIXED:.c=.o)
 
 all : $(NAME)
 
-%.o: %.c ./includes/fdf.h
+%.o: %.c ./includes/fdf.h ./includes/color.h
 	$(CC) $(CFLAGS) -I$(MLX_DIR) -c $< -o $@
 $(NAME): $(OBJS)
 	@$(MAKE) re -C ./libft

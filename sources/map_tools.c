@@ -6,7 +6,7 @@
 /*   By: jkasongo <jkasongo@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 21:07:39 by jkasongo          #+#    #+#             */
-/*   Updated: 2021/10/05 00:32:43 by jkasongo         ###   ########.fr       */
+/*   Updated: 2021/10/07 02:07:06 by jkasongo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,15 @@ int	ft_get_palete_color(int palete, double percent)
 
 void	isometric_projection(t_coord *point)
 {
-	int	x;
-	int	y;
+	double	x;
+	double	y;
+	double	z;
 
-	x = point->x;
-	y = point->y;
-	point->x = (x - y) * cos(0.523599);
-	point->y = -point->z + (x + y) * sin(0.523599);
+	x = (double)point->x;
+	y = (double)point->y;
+	z = (double)point->z;
+	point->x = (int)round((x - y) * cos(0.523599));
+	point->y = (int)round((-1 * z) +(x + y) * sin(0.523599));
 }
 
 void	project_choice(t_coord *point, t_image *img)

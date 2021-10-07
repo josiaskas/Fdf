@@ -31,6 +31,7 @@ typedef struct s_image
 	int		endian;
 	int		bg_color;
 	int		menu_bg_color;
+	int		text_color;
 	int		palete;
 	int		min;
 	int		max;
@@ -65,13 +66,14 @@ int		openfile(char *filename, t_app *app);
 // hooks
 int		key_pressed_hook(int key, t_app *app);
 int		terminate_hook(t_app *app);
+int		close_window(t_app *app);
 
 // init mlx image
 bool	ft_init_image(t_app *app);
 bool	draw_menu(t_app *app);
 void	draw_background(t_image *img);
 void	ft_draw_fdf(t_app *app);
-void	ft_project(t_app *app, t_image *img);
+void	ft_rotate(t_app *app, t_image *img);
 void	ft_rotation_matrix(t_coord *point, t_image *img);
 int		ft_get_palete_color(int palete, double percent);
 void	project_choice(t_coord *point, t_image *img);

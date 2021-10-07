@@ -6,7 +6,7 @@
 /*   By: jkasongo <jkasongo@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 02:25:00 by jkasongo          #+#    #+#             */
-/*   Updated: 2021/10/07 01:50:46 by jkasongo         ###   ########.fr       */
+/*   Updated: 2021/10/07 03:14:16 by jkasongo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,11 @@ t_coord	prepare_point(t_coord *original, t_app *app)
 		result.color = original->color;
 	else
 		result.color = ft_get_palete_color(img->palete, percent);
+	project_choice(&result, img);
 	result.x += img->map_start_x;
 	result.y += img->map_start_y;
+	if (img->projection == 1)
+		result.x += 100;
 	return (result);
 }
 
@@ -65,7 +68,7 @@ void	draw_map(t_app *app, t_coord ***map)
 	mlx_put_image_to_window(app->mlx, app->window, app->mlx_img->img, 0, 0);
 }
 
-void	ft_project(t_app *app, t_image *img)
+void	ft_rotate(t_app *app, t_image *img)
 {
 	int		x;
 	int		y;
@@ -78,9 +81,9 @@ void	ft_project(t_app *app, t_image *img)
 		while (app->map[y][x]->end == false)
 		{
 			ft_rotation_matrix(app->map[y][x], img);
-			project_choice(app->map[y][x], img);
 			x++;
 		}
+		ft_rotation_matrix(app->map[y][x], img);
 		y++;
 	}
 }
@@ -88,7 +91,7 @@ void	ft_project(t_app *app, t_image *img)
 void	ft_draw_fdf(t_app *app)
 {
 	draw_background(app->mlx_img);
-	ft_project(app, app->mlx_img);
+	ft_rotate(app, app->mlx_img);
 	draw_map(app, app->map);
 	draw_menu(app);
 }
