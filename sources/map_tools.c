@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_tools.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkasongo <jkasongo@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: jkasongo <jkasongo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 21:07:39 by jkasongo          #+#    #+#             */
-/*   Updated: 2021/10/07 02:07:06 by jkasongo         ###   ########.fr       */
+/*   Updated: 2021/10/08 00:06:04 by jkasongo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,35 +16,38 @@
 
 void	ft_rotation_matrix(t_coord	*point, t_image *img)
 {
-	int	x;
-	int	y;
+	double	x;
+	double	y;
+	double	z;
 
-	y = point->y;
-	point->y = (y * cos(img->alpha)) + (point->z * sin(img->alpha));
-	point->z = (-y * sin(img->alpha)) + (point->z * cos(img->alpha));
-	x = point->x;
-	point->x = (x * cos(img->beta)) + (point->z * sin(img->beta));
-	point->z = (-x * sin(img->beta)) + (point->z * cos(img->beta));
-	x = point->x;
-	y = point->y;
-	point->x = x * cos(img->gamma) - y * sin(img->gamma);
-	point->y = x * sin(img->gamma) + y * cos(img->gamma);
-	if (point->z > img->max)
-		img->max = point->z;
-	if (point->z < img->min)
-		img->min = point->z;
+	x = (double)point->x;
+	y = (double)point->y;
+	z = (double)point->z;
+	point->y = (int)round((y * cos(img->alpha)) + (z * sin(img->alpha)));
+	point->z = (int)round((-y * sin(img->alpha)) + (z * cos(img->alpha)));
+	z = (double)point->z;
+	point->x = (int)round((x * cos(img->beta)) + (z * sin(img->beta)));
+	point->z = (int)round((-x * sin(img->beta)) + (z * cos(img->beta)));
+	x = (double)point->x;
+	y = (double)point->y;
+	point->x = (int)round(x * cos(img->gamma) - y * sin(img->gamma));
+	point->y = (int)round(x * sin(img->gamma) + y * cos(img->gamma));
 }
 
-int	ft_get_palete_color(int palete, double percent)
+int	ft_get_palette_color(int palete, double percent)
 {
 	if (palete == 1)
-		return (palete_one(percent));
+		return (palette_one(percent));
 	else if (palete == 2)
-		return (palete_two(percent));
+		return (palette_two(percent));
 	else if (palete == 3)
-		return (palete_three(percent));
+		return (palette_three(percent));
+	else if (palete == 4)
+		return (palette_four(percent));
+	else if (palete == 5)
+		return (palette_five(percent));
 	else
-		return (palete_one(percent));
+		return (palette_one(percent));
 }
 
 void	isometric_projection(t_coord *point)

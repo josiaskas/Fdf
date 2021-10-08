@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fdf.h                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jkasongo <jkasongo@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/10/07 21:02:03 by jkasongo          #+#    #+#             */
+/*   Updated: 2021/10/08 01:00:34 by jkasongo         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FDF_H
 # define FDF_H
 
@@ -8,6 +20,8 @@
 # include "../minilibx/mlx.h"
 # include "../libft/libft.h"
 # include "color.h"
+# include "hooks_key.h"
+
 # define W_HEIGHT 768
 # define W_WIDTH 1366
 # define MENU_WIDTH 250
@@ -29,10 +43,7 @@ typedef struct s_image
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
-	int		bg_color;
-	int		menu_bg_color;
-	int		text_color;
-	int		palete;
+	int		palette;
 	int		min;
 	int		max;
 	int		zoom;
@@ -41,6 +52,8 @@ typedef struct s_image
 	double	gamma;
 	int		map_start_x;
 	int		map_start_y;
+	int		move_x;
+	int		move_y;
 	int		projection;
 }	t_image;
 
@@ -65,6 +78,10 @@ void	ft_print_error(char *error_message, int code);
 int		openfile(char *filename, t_app *app);
 // hooks
 int		key_pressed_hook(int key, t_app *app);
+void	ft_move_map(int key, t_app *app);
+void	ft_change_palete(t_app *app);
+void	ft_zoom_hook(int key, t_app *app);
+void	ft_rotate_hook(int key, t_app *app);
 int		terminate_hook(t_app *app);
 int		close_window(t_app *app);
 
@@ -73,9 +90,8 @@ bool	ft_init_image(t_app *app);
 bool	draw_menu(t_app *app);
 void	draw_background(t_image *img);
 void	ft_draw_fdf(t_app *app);
-void	ft_rotate(t_app *app, t_image *img);
 void	ft_rotation_matrix(t_coord *point, t_image *img);
-int		ft_get_palete_color(int palete, double percent);
+int		ft_get_palette_color(int palete, double percent);
 void	project_choice(t_coord *point, t_image *img);
 t_coord	prepare_point(t_coord *orignal, t_app *app);
 

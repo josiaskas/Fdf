@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkasongo <jkasongo@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: jkasongo <jkasongo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 02:25:00 by jkasongo          #+#    #+#             */
-/*   Updated: 2021/10/07 03:14:16 by jkasongo         ###   ########.fr       */
+/*   Updated: 2021/10/08 00:20:56 by jkasongo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 t_coord	prepare_point(t_coord *original, t_app *app)
 {
 	t_coord	result;
-	bool	percent;
+	double	percent;
 	t_image	*img;
 
 	img = app->mlx_img;
@@ -24,26 +24,23 @@ t_coord	prepare_point(t_coord *original, t_app *app)
 	result.y = original->y * img->zoom;
 	result.z = original->z * img->zoom;
 	result.special = original->special;
-	if (result.special)
+	if (result.special && (img->palette == 1))
 		result.color = original->color;
 	else
-		result.color = ft_get_palete_color(img->palete, percent);
+		result.color = ft_get_palette_color(img->palette, percent);
+	ft_rotation_matrix(&result, img);
 	project_choice(&result, img);
-	result.x += img->map_start_x;
-	result.y += img->map_start_y;
+	result.x += img->map_start_x + img->move_x;
+	result.y += img->map_start_y + img->move_y;
 	if (img->projection == 1)
 		result.x += 100;
 	return (result);
 }
 
-void	draw_map(t_app *app, t_coord ***map)
+void	draw_map(t_app *app, t_coord ***map, int x, int y)
 {
-	int		x;
-	int		y;
 	bool	smaller_line;
 
-	y = 0;
-	x = 0;
 	while (y < app->file_y)
 	{
 		x = 0;
@@ -91,7 +88,7 @@ void	ft_rotate(t_app *app, t_image *img)
 void	ft_draw_fdf(t_app *app)
 {
 	draw_background(app->mlx_img);
-	ft_rotate(app, app->mlx_img);
-	draw_map(app, app->map);
+	// ft_rotate(app, app->mlx_img);
+	draw_map(app, app->map, 0, 0);
 	draw_menu(app);
 }
