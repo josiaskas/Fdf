@@ -6,7 +6,7 @@
 /*   By: jkasongo <jkasongo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/22 12:31:54 by jkasongo          #+#    #+#             */
-/*   Updated: 2021/10/08 00:27:17 by jkasongo         ###   ########.fr       */
+/*   Updated: 2021/10/08 01:35:35 by jkasongo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ double	ft_percent(int start, int end, int current);
 // color start, color end and curent percent on the slope
 int		ft_gradient(int start, int end, double percent);
 int		palette_one(double percent);
-int		palette_two(double percent);
+int		palette_two(double percent, int z);
 int		palette_three(double percent);
 int		palette_four(double percent);
 int		palette_five(double percent);

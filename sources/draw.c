@@ -6,7 +6,7 @@
 /*   By: jkasongo <jkasongo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 02:25:00 by jkasongo          #+#    #+#             */
-/*   Updated: 2021/10/08 00:20:56 by jkasongo         ###   ########.fr       */
+/*   Updated: 2021/10/08 01:35:10 by jkasongo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_coord	prepare_point(t_coord *original, t_app *app)
 	if (result.special && (img->palette == 1))
 		result.color = original->color;
 	else
-		result.color = ft_get_palette_color(img->palette, percent);
+		result.color = ft_get_palette_color(img->palette, percent, original->z);
 	ft_rotation_matrix(&result, img);
 	project_choice(&result, img);
 	result.x += img->map_start_x + img->move_x;

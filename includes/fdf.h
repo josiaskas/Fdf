@@ -6,7 +6,7 @@
 /*   By: jkasongo <jkasongo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 21:02:03 by jkasongo          #+#    #+#             */
-/*   Updated: 2021/10/08 01:00:34 by jkasongo         ###   ########.fr       */
+/*   Updated: 2021/10/08 01:34:11 by jkasongo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ bool	draw_menu(t_app *app);
 void	draw_background(t_image *img);
 void	ft_draw_fdf(t_app *app);
 void	ft_rotation_matrix(t_coord *point, t_image *img);
-int		ft_get_palette_color(int palete, double percent);
+int		ft_get_palette_color(int palete, double percent, int z);
 void	project_choice(t_coord *point, t_image *img);
 t_coord	prepare_point(t_coord *orignal, t_app *app);
 

@@ -6,7 +6,7 @@
 /*   By: jkasongo <jkasongo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 21:07:39 by jkasongo          #+#    #+#             */
-/*   Updated: 2021/10/08 00:06:04 by jkasongo         ###   ########.fr       */
+/*   Updated: 2021/10/08 01:32:59 by jkasongo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,12 @@ void	ft_rotation_matrix(t_coord	*point, t_image *img)
 	point->y = (int)round(x * sin(img->gamma) + y * cos(img->gamma));
 }
 
-int	ft_get_palette_color(int palete, double percent)
+int	ft_get_palette_color(int palete, double percent, int z)
 {
 	if (palete == 1)
 		return (palette_one(percent));
 	else if (palete == 2)
-		return (palette_two(percent));
+		return (palette_two(percent, z));
 	else if (palete == 3)
 		return (palette_three(percent));
 	else if (palete == 4)

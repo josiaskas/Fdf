@@ -6,7 +6,7 @@
 /*   By: jkasongo <jkasongo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 22:53:20 by jkasongo          #+#    #+#             */
-/*   Updated: 2021/10/08 00:26:04 by jkasongo         ###   ########.fr       */
+/*   Updated: 2021/10/08 01:59:17 by jkasongo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,26 +27,22 @@ int	palette_one(double percent)
 		return (0xF3AF3D);
 }
 
-int	palette_two(double percent)
+int	palette_two(double percent, int z)
 {
-	if (percent < 0.1)
-		return (0x370617);
-	else if (percent < 0.2)
-		return (0x6A040F);
-	else if (percent < 0.3)
-		return (0x9D0208);
-	else if (percent < 0.4)
-		return (0xD00000);
-	else if (percent < 0.5)
-		return (0xDC2F02);
-	else if (percent < 0.6)
-		return (0xE85D04);
-	else if (percent < 0.7)
-		return (0xF48C06);
-	else if (percent < 0.8)
-		return (0xFAA307);
+	if (z >= 8)
+		return (palette_three(percent));
+	else if (z >= 4)
+		return (0xffff00);
+	else if (z >= 2)
+		return (0xff8000);
+	else if (z >= 0)
+		return (0x40ff00);
+	else if (z == 0)
+		return (0x00ffff);
+	else if (z < 0)
+		return (0x0080ff);
 	else
-		return (0xFFBA08);
+		return (0x0000ff);
 }
 
 int	palette_three(double percent)
