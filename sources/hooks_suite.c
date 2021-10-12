@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks_suite.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkasongo <jkasongo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jkasongo <jkasongo@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 20:58:09 by jkasongo          #+#    #+#             */
-/*   Updated: 2021/10/08 01:13:22 by jkasongo         ###   ########.fr       */
+/*   Updated: 2021/10/08 02:56:59 by jkasongo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,8 @@ void	ft_rotate_hook(int key, t_app *app)
 	else if (key == NUM_PAD_8 || key == MAIN_PAD_8)
 		img->beta -= 0.05;
 	else if (key == NUM_PAD_1 || key == MAIN_PAD_1)
-		img->beta += 0.05;
+		img->gamma += 0.05;
 	else if (key == NUM_PAD_9 || key == MAIN_PAD_9)
-		img->beta -= 0.05;
+		img->gamma -= 0.05;
 	ft_draw_fdf(app);
 }
