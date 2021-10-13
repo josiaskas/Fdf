@@ -44,6 +44,8 @@ fclean : clean
 
 re : fclean all
 
+bonus : re
+
 map42:all
 	./fdf maps/42.map
 map_simple:all

@@ -6,7 +6,7 @@
 /*   By: jkasongo <jkasongo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 00:47:00 by jkasongo          #+#    #+#             */
-/*   Updated: 2021/10/13 00:38:26 by jkasongo         ###   ########.fr       */
+/*   Updated: 2021/10/13 15:36:19 by jkasongo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,35 +15,39 @@
 
 void	ft_change_projection(int key, t_app *app)
 {
-	bool	no_rerender;
-
-	no_rerender = false;
-	if (key == MAIN_PAD_I)
+	if ((key == MAIN_PAD_I) && (app->mlx_img->projection != 1))
 	{
-		if (app->mlx_img->projection == 1)
-			no_rerender = true;
 		app->mlx_img->projection = 1;
+		ft_draw_fdf(app);
 	}
-	else if (key == MAIN_PAD_P)
+	else if ((key == MAIN_PAD_T) && (app->mlx_img->projection != 0))
 	{
-		if (app->mlx_img->projection == 0)
-			no_rerender = true;
 		app->mlx_img->projection = 0;
+		ft_draw_fdf(app);
+	}
+	else if ((key == MAIN_PAD_R) && (app->mlx_img->projection != 2))
+	{
+		app->mlx_img->projection = 2;
+		ft_draw_fdf(app);
+	}
+	else if ((key == MAIN_PAD_F) && (app->mlx_img->projection != 3))
+	{
+		app->mlx_img->projection = 3;
+		ft_draw_fdf(app);
 	}
 	app->mlx_img->alpha = 0;
 	app->mlx_img->beta = 0;
 	app->mlx_img->gamma = 0;
 	app->mlx_img->move_x = 0;
 	app->mlx_img->move_y = 0;
-	if (!no_rerender)
-		ft_draw_fdf(app);
 }
 
 int	key_pressed_hook(int key, t_app *app)
 {
 	if (key == MAIN_PAD_ESC)
 		close_window(app);
-	else if (key == MAIN_PAD_P || key == MAIN_PAD_I)
+	else if (key == MAIN_PAD_I || key == MAIN_PAD_T
+		|| key == MAIN_PAD_R || key == MAIN_PAD_F)
 		ft_change_projection(key, app);
 	else if (key == MAIN_PAD_C)
 		ft_change_palete(app);

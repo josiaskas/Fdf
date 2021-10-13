@@ -6,7 +6,7 @@
 /*   By: jkasongo <jkasongo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/03 19:50:35 by jkasongo          #+#    #+#             */
-/*   Updated: 2021/10/13 00:29:28 by jkasongo         ###   ########.fr       */
+/*   Updated: 2021/10/13 15:41:07 by jkasongo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,18 +129,12 @@ void	draw_menu(t_app *app)
 	mlx_string_put(mlx, win, 50, y += 20, WHITE, "* Fil de Fer (FDF) *");
 	mlx_string_put(mlx, win, 50, y += 20, WHITE, "********************");
 	mlx_string_put(mlx, win, 15, y += 70, TEXT_COLOR, "Change Palette: C");
-	mlx_string_put(mlx, win, 15, y += 80, TEXT_COLOR, "Zoom: Scroll or +/-");
+	mlx_string_put(mlx, win, 15, y += 50, TEXT_COLOR, "Zoom: Scroll or +/-");
 	mlx_string_put(mlx, win, 15, y += 30, TEXT_COLOR, "Move: Arrow && Mouse");
 	mlx_string_put(mlx, win, 15, y += 30, TEXT_COLOR, "Elevation: U / D");
-	mlx_string_put(mlx, win, 15, y += 100, WHITE, "Rotate:");
+	mlx_string_put(mlx, win, 15, y += 60, WHITE, "Rotate:");
 	mlx_string_put(mlx, win, 57, y += 25, TEXT_COLOR, "X-Axis - Key 4 or 6");
 	mlx_string_put(mlx, win, 57, y += 25, TEXT_COLOR, "Y-Axis - Key 2 or 8");
 	mlx_string_put(mlx, win, 57, y += 25, TEXT_COLOR, "Z-Axis - Key 1 or 9");
-	mlx_string_put(mlx, win, 15, y += 30, WHITE, "Projection");
-	if (app->mlx_img->projection == 1)
-		mlx_string_put(mlx, win, 30, y + 25, TEXT_COLOR, "==>");
-	mlx_string_put(mlx, win, 57, y += 25, TEXT_COLOR, "ISO: I Key");
-	if (app->mlx_img->projection == 0)
-		mlx_string_put(mlx, win, 30, y + 25, TEXT_COLOR, "==>");
-	mlx_string_put(mlx, win, 57, y += 25, TEXT_COLOR, "Parallel: P Key");
+	projection_menu_selector(app, mlx, win, y);
 }

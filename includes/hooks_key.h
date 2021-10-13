@@ -6,7 +6,7 @@
 /*   By: jkasongo <jkasongo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 20:59:45 by jkasongo          #+#    #+#             */
-/*   Updated: 2021/10/13 00:38:17 by jkasongo         ###   ########.fr       */
+/*   Updated: 2021/10/13 15:18:45 by jkasongo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@
 # define MAIN_PAD_P 35
 # define MAIN_PAD_D 2
 # define MAIN_PAD_U 32
+# define MAIN_PAD_T 17
+# define MAIN_PAD_R 15
+# define MAIN_PAD_F 3
 # define NUM_PAD_PLUS 69
 # define NUM_PAD_MINUS 78
 # define MAIN_PAD_ESC 53

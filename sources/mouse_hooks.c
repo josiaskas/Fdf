@@ -6,7 +6,7 @@
 /*   By: jkasongo <jkasongo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 15:56:42 by jkasongo          #+#    #+#             */
-/*   Updated: 2021/10/13 00:11:32 by jkasongo         ###   ########.fr       */
+/*   Updated: 2021/10/13 15:40:17 by jkasongo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,14 @@ int	mouse_pressed(int button, int x, int y, t_app *app)
 	{
 		app->mouse->previous_x = x;
 		app->mouse->previous_y = y;
-		if (x > 56 && x < 128 && y > 492 && y < 504)
+		if (x > 55 && x < 128 && y > 422 && y < 435)
 			ft_change_projection(MAIN_PAD_I, app);
-		else if (x > 56 && x < 161 && y > 520 && y < 532)
-			ft_change_projection(MAIN_PAD_P, app);
+		else if (x > 55 && x < 128 && y > 479 && y < 492)
+			ft_change_projection(MAIN_PAD_T, app);
+		else if (x > 55 && x < 142 && y > 505 && y < 518)
+			ft_change_projection(MAIN_PAD_R, app);
+		else if (x > 55 && x < 142 && y > 530 && y < 543)
+			ft_change_projection(MAIN_PAD_F, app);
 		else if (x > MENU_WIDTH && x < W_WIDTH && y > 0 && y < W_HEIGHT)
 			app->mouse->b_pressed = true;
 	}

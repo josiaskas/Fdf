@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_tools.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkasongo <jkasongo@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: jkasongo <jkasongo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 21:07:39 by jkasongo          #+#    #+#             */
-/*   Updated: 2021/10/12 22:38:05 by jkasongo         ###   ########.fr       */
+/*   Updated: 2021/10/13 15:29:35 by jkasongo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,37 @@ void	isometric_projection(t_coord *point)
 	point->y = (int)round((-1 * z) +(x + y) * 0.5000001943);
 }
 
+void	projection_menu_selector(t_app *app, void *mlx, void *win, int y)
+{
+	mlx_string_put(mlx, win, 15, y += 30, WHITE, "Projection");
+	if (app->mlx_img->projection == 1)
+		mlx_string_put(mlx, win, 30, y + 25, TEXT_COLOR, "==>");
+	mlx_string_put(mlx, win, 57, y += 25, TEXT_COLOR, "ISO: I Key");
+	mlx_string_put(mlx, win, 57, y += 30, WHITE, "Parallel - Multi view");
+	if (app->mlx_img->projection == 0)
+		mlx_string_put(mlx, win, 30, y + 25, TEXT_COLOR, "==>");
+	mlx_string_put(mlx, win, 57, y += 25, TEXT_COLOR, "Top Vue: T");
+	if (app->mlx_img->projection == 2)
+		mlx_string_put(mlx, win, 30, y + 25, TEXT_COLOR, "==>");
+	mlx_string_put(mlx, win, 57, y += 25, TEXT_COLOR, "Right Vue: R");
+	if (app->mlx_img->projection == 3)
+		mlx_string_put(mlx, win, 30, y + 25, TEXT_COLOR, "==>");
+	mlx_string_put(mlx, win, 57, y += 25, TEXT_COLOR, "Front Vue: F");
+}
+
 void	project_choice(t_coord *point, t_image *img)
 {
 	if (img->projection == 1)
 		isometric_projection(point);
+	if (img->projection == 2)
+	{	
+		point->x = point->y;
+		point->y = -point->z;
+	}
+	if (img->projection == 3)
+	{
+		point->x = point->x;
+		point->y = -point->z;
+	}
 	return ;
 }

@@ -6,7 +6,7 @@
 /*   By: jkasongo <jkasongo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 21:02:03 by jkasongo          #+#    #+#             */
-/*   Updated: 2021/10/13 00:28:46 by jkasongo         ###   ########.fr       */
+/*   Updated: 2021/10/13 15:13:51 by jkasongo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ int		close_window(t_app *app);
 // init mlx image and draw map
 bool	ft_init_image(t_app *app);
 void	draw_menu(t_app *app);
+void	projection_menu_selector(t_app *app, void *mlx, void *win, int y);
 void	draw_background(t_image *img);
 void	ft_draw_fdf(t_app *app);
 void	ft_rotation_matrix(t_coord *point, t_image *img);
