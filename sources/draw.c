@@ -6,7 +6,7 @@
 /*   By: jkasongo <jkasongo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 02:25:00 by jkasongo          #+#    #+#             */
-/*   Updated: 2021/10/08 01:35:10 by jkasongo         ###   ########.fr       */
+/*   Updated: 2021/10/12 20:28:44 by jkasongo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,6 @@ void	ft_rotate(t_app *app, t_image *img)
 void	ft_draw_fdf(t_app *app)
 {
 	draw_background(app->mlx_img);
-	// ft_rotate(app, app->mlx_img);
 	draw_map(app, app->map, 0, 0);
 	draw_menu(app);
 }

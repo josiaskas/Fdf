@@ -6,7 +6,7 @@
 /*   By: jkasongo <jkasongo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 21:02:03 by jkasongo          #+#    #+#             */
-/*   Updated: 2021/10/08 01:34:11 by jkasongo         ###   ########.fr       */
+/*   Updated: 2021/10/12 20:22:12 by jkasongo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,14 @@ typedef struct s_coord
 	bool	end;
 	int		color;
 }	t_coord;
+
+typedef struct s_mouse
+{
+	int		previous_x;
+	int		previous_y;
+	bool	b_pressed;
+	double	deg_value;
+}	t_mouse;
 
 typedef struct s_image
 {
@@ -71,6 +79,7 @@ typedef struct s_app
 	int		error_code;
 	int		fd;
 	t_coord	***map;
+	t_mouse	*mouse;
 }	t_app;
 
 void	ft_show_error(t_app *app);
@@ -78,8 +87,12 @@ void	ft_print_error(char *error_message, int code);
 int		openfile(char *filename, t_app *app);
 // hooks
 int		key_pressed_hook(int key, t_app *app);
+int		mouse_pressed(int button, int x, int y, t_app *app);
+int		mouse_release(int button, int x, int y, t_app *app);
+int		mouse_moved(int x, int y, t_app *app);
 void	ft_move_map(int key, t_app *app);
 void	ft_change_palete(t_app *app);
+void	ft_change_projection(int key, t_app *app);
 void	ft_zoom_hook(int key, t_app *app);
 void	ft_rotate_hook(int key, t_app *app);
 int		terminate_hook(t_app *app);
@@ -87,7 +100,7 @@ int		close_window(t_app *app);
 
 // init mlx image
 bool	ft_init_image(t_app *app);
-bool	draw_menu(t_app *app);
+void	draw_menu(t_app *app);
 void	draw_background(t_image *img);
 void	ft_draw_fdf(t_app *app);
 void	ft_rotation_matrix(t_coord *point, t_image *img);

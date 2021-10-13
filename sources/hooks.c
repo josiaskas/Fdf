@@ -6,14 +6,14 @@
 /*   By: jkasongo <jkasongo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 00:47:00 by jkasongo          #+#    #+#             */
-/*   Updated: 2021/10/08 01:12:04 by jkasongo         ###   ########.fr       */
+/*   Updated: 2021/10/12 20:04:21 by jkasongo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 #include "../includes/hooks_key.h"
 
-static void	ft_change_projection(int key, t_app *app)
+void	ft_change_projection(int key, t_app *app)
 {
 	bool	no_rerender;
 

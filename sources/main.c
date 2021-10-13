@@ -3,13 +3,19 @@
 static void	loop_app(t_app *app)
 {
 	t_image	*img;
+	t_mouse	*mouse;
 
 	img = app->mlx_img;
+	mouse = (t_mouse *)ft_calloc(1, sizeof(t_mouse));
+	mouse->deg_value = (W_WIDTH * 1.4142) / 360;
+	app->mouse = mouse;
 	ft_draw_fdf(app);
-	mlx_hook(app->window, 2, 0, key_pressed_hook, app);
+	mlx_hook(app->window, 2, 1L << 0, key_pressed_hook, app);
 	mlx_hook(app->window, 17, 0, close_window, app);
+	mlx_hook(app->window, 4, 1L << 2, mouse_pressed, app);
+	mlx_hook(app->window, 5, 1L << 3, mouse_release, app);
+	mlx_hook(app->window, 6, 1L << 6, mouse_moved, app);
 	mlx_loop(app->mlx);
-	//print_map_file(app);
 }
 
 static bool	init_app(t_app *app, int fd)

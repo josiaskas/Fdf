@@ -10,7 +10,7 @@ MLX_FLAGS = -L$(MLX_DIR) -lmlx -framework OpenGl -framework AppKit
 SRCS_DIR = sources/
 SRCS = main.c parse_file.c errors.c mlx_utils.c utils.c\
 		draw_segment.c draw.c colors.c map_tools.c palette.c\
-		hooks.c hooks_suite.c\
+		hooks.c hooks_suite.c mouse_hooks.c\
 
 SRCS_PREFIXED = $(addprefix $(SRCS_DIR), $(SRCS))
 

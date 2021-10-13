@@ -6,7 +6,7 @@
 /*   By: jkasongo <jkasongo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/03 19:50:35 by jkasongo          #+#    #+#             */
-/*   Updated: 2021/10/08 00:30:28 by jkasongo         ###   ########.fr       */
+/*   Updated: 2021/10/12 20:21:28 by jkasongo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ void	draw_background(t_image *img)
 	}
 }
 
-bool	draw_menu(t_app *app)
+void	draw_menu(t_app *app)
 {
 	int		y;
 	void	*mlx;
@@ -124,12 +124,11 @@ bool	draw_menu(t_app *app)
 	y = 0;
 	mlx = app->mlx;
 	win = app->window;
-	mlx_string_put(mlx, win, 50, y += 20, WHITE, "Fil de Fer (FDF)");
-	mlx_string_put(mlx, win, 65, y += 30, WHITE, "INSTRUCTIONS");
-	mlx_string_put(mlx, win, 65, y += 8, WHITE, "------------");
-	mlx_string_put(mlx, win, 15, y += 35, TEXT_COLOR, "Change Palette: C");
+	mlx_string_put(mlx, win, 50, y += 20, WHITE, "* Fil de Fer (FDF) *");
+	mlx_string_put(mlx, win, 50, y += 20, WHITE, "********************");
+	mlx_string_put(mlx, win, 15, y += 70, TEXT_COLOR, "Change Palette: C");
 	mlx_string_put(mlx, win, 15, y += 80, TEXT_COLOR, "Zoom: Scroll or +/-");
-	mlx_string_put(mlx, win, 15, y += 30, TEXT_COLOR, "Move: Arrows");
+	mlx_string_put(mlx, win, 15, y += 30, TEXT_COLOR, "Move: Arrow keys");
 	mlx_string_put(mlx, win, 15, y += 30, TEXT_COLOR, "Flatten: </>");
 	mlx_string_put(mlx, win, 15, y += 30, TEXT_COLOR, "Rotate: Press & Move");
 	mlx_string_put(mlx, win, 15, y += 80, WHITE, "Rotate:");
@@ -137,7 +136,10 @@ bool	draw_menu(t_app *app)
 	mlx_string_put(mlx, win, 57, y += 25, TEXT_COLOR, "Y-Axis - Key 2 or 8");
 	mlx_string_put(mlx, win, 57, y += 25, TEXT_COLOR, "Z-Axis - Key 1 or 9");
 	mlx_string_put(mlx, win, 15, y += 30, WHITE, "Projection");
+	if (app->mlx_img->projection == 1)
+		mlx_string_put(mlx, win, 30, y + 25, TEXT_COLOR, "==>");
 	mlx_string_put(mlx, win, 57, y += 25, TEXT_COLOR, "ISO: I Key");
+	if (app->mlx_img->projection == 0)
+		mlx_string_put(mlx, win, 30, y + 25, TEXT_COLOR, "==>");
 	mlx_string_put(mlx, win, 57, y += 25, TEXT_COLOR, "Parallel: P Key");
-	return (true);
 }
