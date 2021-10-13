@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_tools.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkasongo <jkasongo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jkasongo <jkasongo@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 21:07:39 by jkasongo          #+#    #+#             */
-/*   Updated: 2021/10/08 01:32:59 by jkasongo         ###   ########.fr       */
+/*   Updated: 2021/10/12 22:38:05 by jkasongo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,8 @@ void	isometric_projection(t_coord *point)
 	x = (double)point->x;
 	y = (double)point->y;
 	z = (double)point->z;
-	point->x = (int)round((x - y) * cos(0.523599));
-	point->y = (int)round((-1 * z) +(x + y) * sin(0.523599));
+	point->x = (int)round((x - y) * 0.866025291);
+	point->y = (int)round((-1 * z) +(x + y) * 0.5000001943);
 }
 
 void	project_choice(t_coord *point, t_image *img)
