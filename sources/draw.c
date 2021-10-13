@@ -6,7 +6,7 @@
 /*   By: jkasongo <jkasongo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 02:25:00 by jkasongo          #+#    #+#             */
-/*   Updated: 2021/10/12 20:28:44 by jkasongo         ###   ########.fr       */
+/*   Updated: 2021/10/13 00:36:16 by jkasongo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_coord	prepare_point(t_coord *original, t_app *app)
 	percent = ft_percent(img->min, img->max, original->z);
 	result.x = original->x * img->zoom;
 	result.y = original->y * img->zoom;
-	result.z = original->z * img->zoom;
+	result.z = original->z * img->zoom * img->z_zoom;
 	result.special = original->special;
 	if (result.special && (img->palette == 1))
 		result.color = original->color;

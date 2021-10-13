@@ -6,7 +6,7 @@
 /*   By: jkasongo <jkasongo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 15:56:42 by jkasongo          #+#    #+#             */
-/*   Updated: 2021/10/12 20:31:30 by jkasongo         ###   ########.fr       */
+/*   Updated: 2021/10/13 00:11:32 by jkasongo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,14 @@ int	mouse_pressed(int button, int x, int y, t_app *app)
 	{
 		app->mouse->previous_x = x;
 		app->mouse->previous_y = y;
-		if (x > 56 && x < 132 && y > 514 && y < 528)
+		if (x > 56 && x < 128 && y > 492 && y < 504)
 			ft_change_projection(MAIN_PAD_I, app);
-		else if (x > 56 && x < 161 && y > 540 && y < 554)
+		else if (x > 56 && x < 161 && y > 520 && y < 532)
 			ft_change_projection(MAIN_PAD_P, app);
 		else if (x > MENU_WIDTH && x < W_WIDTH && y > 0 && y < W_HEIGHT)
 			app->mouse->b_pressed = true;
 	}
-	else if (button == 5 || button == 4)
+	else if (button == MOUSE_SCROLL_DOWN || button == MOUSE_SCROLL_UP)
 		ft_zoom_hook(button, app);
 	return (0);
 }

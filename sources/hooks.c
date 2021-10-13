@@ -6,7 +6,7 @@
 /*   By: jkasongo <jkasongo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 00:47:00 by jkasongo          #+#    #+#             */
-/*   Updated: 2021/10/12 20:04:21 by jkasongo         ###   ########.fr       */
+/*   Updated: 2021/10/13 00:38:26 by jkasongo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ int	key_pressed_hook(int key, t_app *app)
 		|| key == NUM_PAD_8 || key == MAIN_PAD_8
 		|| key == NUM_PAD_9 || key == MAIN_PAD_9)
 		ft_rotate_hook(key, app);
+	else if (key == MAIN_PAD_U || key == MAIN_PAD_D)
+		ft_flat_hook(key, app);
 	return (0);
 }
 

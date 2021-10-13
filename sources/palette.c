@@ -6,7 +6,7 @@
 /*   By: jkasongo <jkasongo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 22:53:20 by jkasongo          #+#    #+#             */
-/*   Updated: 2021/10/08 01:59:17 by jkasongo         ###   ########.fr       */
+/*   Updated: 2021/10/12 23:24:53 by jkasongo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,20 +29,25 @@ int	palette_one(double percent)
 
 int	palette_two(double percent, int z)
 {
-	if (z >= 8)
-		return (palette_three(percent));
-	else if (z >= 4)
-		return (0xffff00);
-	else if (z >= 2)
-		return (0xff8000);
-	else if (z >= 0)
-		return (0x40ff00);
-	else if (z == 0)
-		return (0x00ffff);
-	else if (z < 0)
-		return (0x0080ff);
+	(void)percent;
+	if (z <= -5)
+		return (0x003366);
+	if (z <= -2)
+		return (0x1962E1);
+	else if (z <= 0)
+		return (0x99CCFF);
+	else if (z <= 8)
+		return (0x009A00);
+	else if (z <= 20)
+		return (0xFFB266);
+	else if (z <= 25)
+		return (0xC16100);
+	else if (z >= 30)
+		return (0x945700);
+	else if (z <= 40)
+		return (0x693502);
 	else
-		return (0x0000ff);
+		return (0xFFFFFF);
 }
 
 int	palette_three(double percent)

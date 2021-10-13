@@ -6,7 +6,7 @@
 /*   By: jkasongo <jkasongo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/03 19:50:35 by jkasongo          #+#    #+#             */
-/*   Updated: 2021/10/12 20:21:28 by jkasongo         ###   ########.fr       */
+/*   Updated: 2021/10/13 00:29:28 by jkasongo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ bool	ft_init_image(t_app *app)
 	img->projection = 1;
 	ft_get_min_max(app, img);
 	ft_init_map_placement(app, img);
+	img->z_zoom = 1;
 	return (true);
 }
 
@@ -124,14 +125,14 @@ void	draw_menu(t_app *app)
 	y = 0;
 	mlx = app->mlx;
 	win = app->window;
+	mlx_string_put(mlx, win, 50, y += 20, WHITE, "********************");
 	mlx_string_put(mlx, win, 50, y += 20, WHITE, "* Fil de Fer (FDF) *");
 	mlx_string_put(mlx, win, 50, y += 20, WHITE, "********************");
 	mlx_string_put(mlx, win, 15, y += 70, TEXT_COLOR, "Change Palette: C");
 	mlx_string_put(mlx, win, 15, y += 80, TEXT_COLOR, "Zoom: Scroll or +/-");
-	mlx_string_put(mlx, win, 15, y += 30, TEXT_COLOR, "Move: Arrow keys");
-	mlx_string_put(mlx, win, 15, y += 30, TEXT_COLOR, "Flatten: </>");
-	mlx_string_put(mlx, win, 15, y += 30, TEXT_COLOR, "Rotate: Press & Move");
-	mlx_string_put(mlx, win, 15, y += 80, WHITE, "Rotate:");
+	mlx_string_put(mlx, win, 15, y += 30, TEXT_COLOR, "Move: Arrow && Mouse");
+	mlx_string_put(mlx, win, 15, y += 30, TEXT_COLOR, "Elevation: U / D");
+	mlx_string_put(mlx, win, 15, y += 100, WHITE, "Rotate:");
 	mlx_string_put(mlx, win, 57, y += 25, TEXT_COLOR, "X-Axis - Key 4 or 6");
 	mlx_string_put(mlx, win, 57, y += 25, TEXT_COLOR, "Y-Axis - Key 2 or 8");
 	mlx_string_put(mlx, win, 57, y += 25, TEXT_COLOR, "Z-Axis - Key 1 or 9");

@@ -6,7 +6,7 @@
 /*   By: jkasongo <jkasongo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 21:02:03 by jkasongo          #+#    #+#             */
-/*   Updated: 2021/10/12 20:22:12 by jkasongo         ###   ########.fr       */
+/*   Updated: 2021/10/13 00:28:46 by jkasongo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ typedef struct s_image
 	int		min;
 	int		max;
 	int		zoom;
+	double	z_zoom;
 	double	alpha;
 	double	beta;
 	double	gamma;
@@ -95,10 +96,11 @@ void	ft_change_palete(t_app *app);
 void	ft_change_projection(int key, t_app *app);
 void	ft_zoom_hook(int key, t_app *app);
 void	ft_rotate_hook(int key, t_app *app);
+void	ft_flat_hook(int key, t_app *app);
 int		terminate_hook(t_app *app);
 int		close_window(t_app *app);
 
-// init mlx image
+// init mlx image and draw map
 bool	ft_init_image(t_app *app);
 void	draw_menu(t_app *app);
 void	draw_background(t_image *img);

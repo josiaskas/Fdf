@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks_suite.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkasongo <jkasongo@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: jkasongo <jkasongo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 20:58:09 by jkasongo          #+#    #+#             */
-/*   Updated: 2021/10/08 02:56:59 by jkasongo         ###   ########.fr       */
+/*   Updated: 2021/10/13 00:39:12 by jkasongo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,20 @@ void	ft_zoom_hook(int key, t_app *app)
 	if (app->mlx_img->zoom < 1)
 		app->mlx_img->zoom = 1;
 	ft_draw_fdf(app);
+}
+
+void	ft_flat_hook(int key, t_app *app)
+{
+	if (key == MAIN_PAD_U)
+		app->mlx_img->z_zoom += 0.1;
+	else if (key == MAIN_PAD_D)
+		app->mlx_img->z_zoom -= 0.1;
+	if (app->mlx_img->z_zoom < 0.1)
+		return ;
+	else if (app->mlx_img->z_zoom > 2)
+		return ;
+	else
+		ft_draw_fdf(app);
 }
 
 void	ft_rotate_hook(int key, t_app *app)
