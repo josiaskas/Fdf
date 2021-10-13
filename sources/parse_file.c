@@ -6,7 +6,7 @@
 /*   By: jkasongo <jkasongo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 15:59:08 by jkasongo          #+#    #+#             */
-/*   Updated: 2021/10/13 15:59:09 by jkasongo         ###   ########.fr       */
+/*   Updated: 2021/10/13 17:18:40 by jkasongo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,7 @@ bool	read_map_file(t_app *app)
 	if (!app->file_map)
 		return (false);
 	res = get_next_line(app->fd, &line);
-	while (res)
+	while (res > 0)
 	{
 		if (!parse_line(line, app))
 		{
