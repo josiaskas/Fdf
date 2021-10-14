@@ -6,7 +6,7 @@
 /*   By: jkasongo <jkasongo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 21:02:03 by jkasongo          #+#    #+#             */
-/*   Updated: 2021/10/13 15:13:51 by jkasongo         ###   ########.fr       */
+/*   Updated: 2021/10/13 20:28:54 by jkasongo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ typedef struct s_app
 	char	*error_message;
 	int		error_code;
 	int		fd;
+	bool	rotate;
 	t_coord	***map;
 	t_mouse	*mouse;
 }	t_app;

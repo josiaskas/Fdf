@@ -6,11 +6,27 @@
 /*   By: jkasongo <jkasongo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 15:58:48 by jkasongo          #+#    #+#             */
-/*   Updated: 2021/10/13 15:58:50 by jkasongo         ###   ########.fr       */
+/*   Updated: 2021/10/14 12:49:16 by jkasongo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
+
+static int	ft_rotate_all(t_app *app)
+{
+	t_image	*img;
+
+	img = app->mlx_img;
+	if (app->rotate)
+	{
+		img->gamma += 0.05;
+		if (img->gamma > 5.5)
+			img->gamma = 0;
+		ft_draw_fdf(app);
+		return (1);
+	}
+	return (0);
+}
 
 static void	loop_app(t_app *app)
 {
@@ -27,6 +43,7 @@ static void	loop_app(t_app *app)
 	mlx_hook(app->window, 4, 1L << 2, mouse_pressed, app);
 	mlx_hook(app->window, 5, 1L << 3, mouse_release, app);
 	mlx_hook(app->window, 6, 1L << 6, mouse_moved, app);
+	mlx_loop_hook(app->mlx, ft_rotate_all, app);
 	mlx_loop(app->mlx);
 }
 
