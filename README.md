@@ -3,6 +3,14 @@
 This project is about creating a simplified 3D graphic representation of a
 relief landscape.
 
+
+```
+make
+```
+```
+./fdf maps/MAP_FILE.fdf
+```
+
 <img src="screenshot/japan_map.png"  alt="incomplete" width = 600px>
 
 
