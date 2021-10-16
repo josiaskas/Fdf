@@ -6,7 +6,7 @@
 /*   By: jkasongo <jkasongo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/03 19:50:35 by jkasongo          #+#    #+#             */
-/*   Updated: 2021/10/13 15:41:07 by jkasongo         ###   ########.fr       */
+/*   Updated: 2021/10/16 01:31:58 by jkasongo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,4 +137,5 @@ void	draw_menu(t_app *app)
 	mlx_string_put(mlx, win, 57, y += 25, TEXT_COLOR, "Y-Axis - Key 2 or 8");
 	mlx_string_put(mlx, win, 57, y += 25, TEXT_COLOR, "Z-Axis - Key 1 or 9");
 	projection_menu_selector(app, mlx, win, y);
+	mlx_string_put(mlx, win, 15, y += 200, TEXT_COLOR, "Rotate Video: V");
 }

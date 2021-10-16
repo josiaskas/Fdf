@@ -6,13 +6,13 @@
 /*   By: jkasongo <jkasongo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 15:58:48 by jkasongo          #+#    #+#             */
-/*   Updated: 2021/10/14 12:49:16 by jkasongo         ###   ########.fr       */
+/*   Updated: 2021/10/16 01:25:11 by jkasongo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-static int	ft_rotate_all(t_app *app)
+static int	ft_rotate_on_z(t_app *app)
 {
 	t_image	*img;
 
@@ -43,7 +43,7 @@ static void	loop_app(t_app *app)
 	mlx_hook(app->window, 4, 1L << 2, mouse_pressed, app);
 	mlx_hook(app->window, 5, 1L << 3, mouse_release, app);
 	mlx_hook(app->window, 6, 1L << 6, mouse_moved, app);
-	mlx_loop_hook(app->mlx, ft_rotate_all, app);
+	mlx_loop_hook(app->mlx, ft_rotate_on_z, app);
 	mlx_loop(app->mlx);
 }
 
