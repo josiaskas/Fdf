@@ -3,12 +3,9 @@
 This project is about creating a simplified 3D graphic representation of a
 relief landscape.
 
-
+To get libft also
 ```
-make
-```
-```
-./fdf maps/MAP_FILE.fdf
+git clone --recursive git@github.com:josiaskas/42-fdf.git 
 ```
 
 <img src="screenshot/japan_map.png"  alt="incomplete" width = 600px>
