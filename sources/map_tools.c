@@ -6,7 +6,7 @@
 /*   By: jkasongo <jkasongo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 21:07:39 by jkasongo          #+#    #+#             */
-/*   Updated: 2021/10/13 15:29:35 by jkasongo         ###   ########.fr       */
+/*   Updated: 2021/10/16 02:35:53 by jkasongo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	isometric_projection(t_coord *point)
 	y = (double)point->y;
 	z = (double)point->z;
 	point->x = (int)round((x - y) * 0.866025291);
-	point->y = (int)round((-1 * z) +(x + y) * 0.5000001943);
+	point->y = (int)round((-1 * z) +(x + y) * 0.500000194);
 }
 
 void	projection_menu_selector(t_app *app, void *mlx, void *win, int y)
