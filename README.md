@@ -1,6 +1,6 @@
 # 42-fdf
 
-This project is about creating a simplified 3D graphic representation of a
+File de fer (FDF) is about creating a simplified 3D graphic representation of a
 relief landscape.
 
 To get libft also
